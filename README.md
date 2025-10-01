@@ -1,47 +1,16 @@
-# Тестовое задание (Flutter, до 4 часов)
+# prompt_result
 
-Создать Flutter-приложение из **2 экранов** (Prompt → Result) c управлением состоянием через **flutter_bloc**.
+A new Flutter project.
 
-## Экран 1 — Prompt
-- Поле ввода с placeholder: *«Describe what you want to see…»*  
-- Кнопка **“Generate”** (неактивна, если поле пустое)
+## Getting Started
 
-## Экран 2 — Result
-- При открытии запускается «генерация»: сначала **лоадер** (2–3 сек), затем отображается картинка-заглушка (asset или по URL)  
-- Кнопки:  
-  - **“Try another”** — повторная «генерация» (снова лоадер → картинка)  
-  - **“New prompt”** — возврат на экран 1, введённый текст сохраняется  
-- При ошибке имитации — показать сообщение об ошибке и кнопку **“Retry”**
+This project is a starting point for a Flutter application.
 
-## Mock API
-```dart
-Future<String> generate(String prompt)
-```
-- Задержка 2–3 сек  
-- ~50% — исключение  
-- Успех — вернуть путь/URL заглушки  
+A few resources to get you started if this is your first Flutter project:
 
-## Требования
-- Flutter 3+, null-safety  
-- **flutter_bloc** для управления состоянием  
-- Навигация любая (Navigator 2.0 / go_router)  
-- Без жёстких требований к архитектуре — код должен быть читаемым и разбитым на виджеты там, где это необходимо  
-- **Весь UI и тексты интерфейса должны быть на английском языке**  
-- Аккуратные отступы, осмысленные элементы интерфейса  
-- Базовые анимации появления результата  
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-## Что будет проверяться
-- Визуальная составляющая: современный, аккуратный UI без макета  
-- UX: понятный сценарий, отсутствие «дёрганий» интерфейса, удобство для пользователя  
-- Внимание к деталям: состояния загрузки, ошибки, работа кнопок  
-- Умение принимать самостоятельные решения по интерфейсу  
-
-> Это не учебная «игрушка», а маленький реальный кейс, показывающий, как вы подойдёте к созданию B2C-приложения без дизайнера.  
-
-## Что сдать
-- Ссылка на публичный **GitHub**-репозиторий с инструкцией запуска в README  
-- Короткий **скринкаст** (до 30–40 сек) с **iOS эмулятора/устройства**, демонстрирующий:  
-  1) ввод промпта и генерацию (лоадер → картинка),  
-  2) «Try another»,  
-  3) обработку ошибки (можно спровоцировать несколькими попытками),  
-  4) «New prompt» с сохранением текста.  
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
