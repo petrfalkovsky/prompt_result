@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:prompt_result/core/constants/resources/app_animations.dart';
 import 'package:prompt_result/core/constants/resources/app_images.dart';
 import 'package:prompt_result/generated/l10n.dart';
 
@@ -18,7 +20,14 @@ class ImageGenerationSuccess extends StatelessWidget {
               imageUrl,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
-                return Center(child: CircularProgressIndicator());
+                return Center(
+                  child: Lottie.asset(
+                    AppAnimations.loadingCircle,
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+                );
               },
               errorBuilder: (context, error, stackTrace) {
                 return Center(

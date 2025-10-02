@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:prompt_result/core/constants/enums/image_state_enum.dart';
+import 'package:prompt_result/core/constants/resources/app_animations.dart';
 import 'package:prompt_result/core/constants/resources/app_images.dart';
 import 'package:prompt_result/core/theme/app_colors.dart';
 import 'package:prompt_result/feature/app/routing/path_route.dart';
@@ -40,7 +42,12 @@ class ResultScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(),
+              Lottie.asset(
+                AppAnimations.loadingCircle,
+                width: 200,
+                height: 200,
+                fit: BoxFit.contain,
+              ),
               SizedBox(height: 20),
               Text(Locales.current.generating_image, style: TextStyle(fontSize: 16)),
             ],
@@ -60,12 +67,28 @@ class ResultScreen extends StatelessWidget {
                     fit: BoxFit.contain,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
+
+                      // Используем Lottie анимацию вместо CircularProgressIndicator
                       return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                              : null,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Lottie.asset(
+                              AppAnimations.loadingCircle,
+                              width: 150,
+                              height: 150,
+                              fit: BoxFit.contain,
+                            ),
+                            // Если хотите отображать процент загрузки
+                            if (loadingProgress.expectedTotalBytes != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  '${((loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!) * 100).toStringAsFixed(0)}%',
+                                  style: TextStyle(color: AppColors.white, fontSize: 14),
+                                ),
+                              ),
+                          ],
                         ),
                       );
                     },
@@ -75,7 +98,10 @@ class ResultScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(AppImages.placeholder, width: 200),
-                            Text(Locales.current.image_upload_error),
+                            Text(
+                              Locales.current.image_upload_error,
+                              style: TextStyle(color: AppColors.white),
+                            ),
                           ],
                         ),
                       );
