@@ -78,6 +78,71 @@ class Locales {
   String get new_prompt {
     return Intl.message('New prompt', name: 'new_prompt', desc: '', args: []);
   }
+
+  /// `Start image generation`
+  String get start_image_generation {
+    return Intl.message(
+      'Start image generation',
+      name: 'start_image_generation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generating image...`
+  String get generating_image {
+    return Intl.message(
+      'Generating image...',
+      name: 'generating_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
+  }
+
+  /// `New request`
+  String get new_request {
+    return Intl.message('New request', name: 'new_request', desc: '', args: []);
+  }
+
+  /// `Image upload error`
+  String get image_upload_error {
+    return Intl.message(
+      'Image upload error',
+      name: 'image_upload_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to generate image`
+  String get failed_to_generate_image {
+    return Intl.message(
+      'Failed to generate image',
+      name: 'failed_to_generate_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error:`
+  String get error {
+    return Intl.message('Error:', name: 'error', desc: '', args: []);
+  }
+
+  /// `Unknown error`
+  String get unknown_error {
+    return Intl.message(
+      'Unknown error',
+      name: 'unknown_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Locales> {

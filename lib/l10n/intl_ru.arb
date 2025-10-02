@@ -1,7 +1,19 @@
 {
     "@@locale": "ru",
+
+    "@@comment": "GENERAL_LOCALE",
     "describe": "Describe what you want to see…",
     "generate": "Generate",
     "try_another": "Try another",
-    "new_prompt": "New prompt"
+    "new_prompt": "New prompt",
+    "start_image_generation": "Start image generation",
+    "generating_image": "Generating image...",
+    "retry": "Retry",
+    "new_request": "New request",
+    "image_upload_error": "Image upload error",
+
+    "@@comment": "ERRORS_LOCALE",
+    "failed_to_generate_image": "Failed to generate image",
+    "error": "Error:",
+    "unknown_error": "Unknown error"
 }

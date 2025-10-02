@@ -25,8 +25,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "describe": MessageLookupByLibrary.simpleMessage(
       "Describe what you want to see…",
     ),
+    "error": MessageLookupByLibrary.simpleMessage("Error:"),
+    "failed_to_generate_image": MessageLookupByLibrary.simpleMessage(
+      "Failed to generate image",
+    ),
     "generate": MessageLookupByLibrary.simpleMessage("Generate"),
+    "generating_image": MessageLookupByLibrary.simpleMessage(
+      "Generating image...",
+    ),
+    "image_upload_error": MessageLookupByLibrary.simpleMessage(
+      "Image upload error",
+    ),
     "new_prompt": MessageLookupByLibrary.simpleMessage("New prompt"),
+    "new_request": MessageLookupByLibrary.simpleMessage("New request"),
+    "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "start_image_generation": MessageLookupByLibrary.simpleMessage(
+      "Start image generation",
+    ),
     "try_another": MessageLookupByLibrary.simpleMessage("Try another"),
+    "unknown_error": MessageLookupByLibrary.simpleMessage("Unknown error"),
   };
 }
