@@ -15,8 +15,12 @@ class PromptScreen extends StatefulWidget {
   State<PromptScreen> createState() => _PromptScreenState();
 }
 
-class _PromptScreenState extends State<PromptScreen> {
+class _PromptScreenState extends State<PromptScreen> with SingleTickerProviderStateMixin {
   late final TextEditingController _promptController;
+  late final AnimationController _animationController;
+  late final Animation<Color?> _backgroundColorAnimation;
+  late final Animation<Color?> _foregroundColorAnimation;
+
   bool _isButtonActive = false;
 
   @override
@@ -25,18 +29,50 @@ class _PromptScreenState extends State<PromptScreen> {
     _promptController = TextEditingController(text: widget.initialPrompt);
     _isButtonActive = _promptController.text.isNotEmpty;
     _promptController.addListener(_updateButtonState);
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _backgroundColorAnimation = ColorTween(
+      begin: AppColors.purple.withOpacity(0.2),
+      end: AppColors.purple,
+    ).animate(_animationController);
+
+    _foregroundColorAnimation = ColorTween(
+      begin: AppColors.purple.withOpacity(0.5),
+      end: AppColors.white,
+    ).animate(_animationController);
+
+    if (_isButtonActive) {
+      _animationController.value = 1.0;
+    } else {
+      _animationController.value = 0.0;
+    }
   }
 
   void _updateButtonState() {
-    setState(() {
-      _isButtonActive = _promptController.text.isNotEmpty;
-    });
+    final bool isActive = _promptController.text.isNotEmpty;
+
+    if (isActive != _isButtonActive) {
+      setState(() {
+        _isButtonActive = isActive;
+      });
+
+      if (isActive) {
+        _animationController.forward();
+      } else {
+        _animationController.reverse();
+      }
+    }
   }
 
   @override
   void dispose() {
     _promptController.removeListener(_updateButtonState);
     _promptController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -52,6 +88,8 @@ class _PromptScreenState extends State<PromptScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: AppColors.black,
+        extendBodyBehindAppBar: true,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -63,7 +101,7 @@ class _PromptScreenState extends State<PromptScreen> {
                   controller: _promptController,
                   decoration: InputDecoration(
                     hintText: Locales.of(context).describe,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     contentPadding: EdgeInsets.all(16.0),
                   ),
                   maxLines: 5,
@@ -72,18 +110,24 @@ class _PromptScreenState extends State<PromptScreen> {
                   onEditingComplete: _isButtonActive ? _onGeneratePressed : null,
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _isButtonActive ? _onGeneratePressed : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _isButtonActive ? AppColors.black : AppColors.white,
-                    foregroundColor: _isButtonActive ? AppColors.white : Colors.grey,
-                    padding: EdgeInsets.symmetric(vertical: 15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color: Colors.grey.withOpacity(0.3)),
-                    ),
-                    elevation: _isButtonActive ? 2.0 : 0.0,
-                  ),
+                AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    return ElevatedButton(
+                      onPressed: _isButtonActive ? _onGeneratePressed : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _backgroundColorAnimation.value,
+                        foregroundColor: _foregroundColorAnimation.value,
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          side: BorderSide(color: AppColors.white.withOpacity(0.3)),
+                        ),
+                        elevation: _isButtonActive ? 2.0 : 0.0,
+                      ),
+                      child: child,
+                    );
+                  },
                   child: Text(
                     Locales.of(context).generate,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:prompt_result/core/constants/resources/app_images.dart';
 import 'package:prompt_result/generated/l10n.dart';
 
 class ImageGenerationFailure extends StatelessWidget {
@@ -13,7 +14,7 @@ class ImageGenerationFailure extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.error_outline, size: 64),
+          Image.asset(AppImages.placeholder, width: 200),
           Text('${Locales.current.error} $error'),
           ElevatedButton(onPressed: () => context.pop(), child: Text(Locales.current.retry)),
         ],

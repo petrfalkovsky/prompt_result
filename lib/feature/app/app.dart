@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:prompt_result/core/theme/app_colors.dart';
 import 'package:prompt_result/feature/app/routing/app_routing.dart';
 import 'package:prompt_result/feature/result/presentation/bloc/image_generator_bloc.dart';
 import 'package:prompt_result/generated/l10n.dart';
@@ -31,6 +32,11 @@ class _AppState extends State<App> {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: goRouter,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.black,
+          appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
+          brightness: Brightness.dark,
+        ),
         localizationsDelegates: const [
           Locales.delegate,
           GlobalMaterialLocalizations.delegate,
