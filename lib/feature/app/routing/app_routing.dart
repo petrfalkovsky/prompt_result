@@ -36,7 +36,6 @@ class _ImageCacheManager extends NavigatorObserver {
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 // global current context getter
-
 BuildContext? get rootCurrentContext {
   final context = rootNavigatorKey.currentState?.context;
   return context;
@@ -69,15 +68,6 @@ Widget _transitionsBuilder(
   Animation<double> secondaryAnimation,
   Widget child,
 ) {
-  return FadeTransition(opacity: animation, child: child);
-}
-
-Widget _gameTransitionsBuilder(
-  BuildContext context,
-  Animation<double> animation,
-  Animation<double> secondaryAnimation,
-  Widget child,
-) {
   final isReverse = secondaryAnimation.status == AnimationStatus.reverse;
 
   var scaleAnimation = Tween<double>(
@@ -102,6 +92,6 @@ Page _customTransitionPage({required GoRouterState state, required Widget child}
     child: child,
     reverseTransitionDuration: const Duration(milliseconds: 1000),
     transitionDuration: const Duration(milliseconds: 1000),
-    transitionsBuilder: _gameTransitionsBuilder,
+    transitionsBuilder: _transitionsBuilder,
   );
 }
