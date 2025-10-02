@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "describe": "Describe what you want to see…",
+    "generate": "Generate",
+    "try_another": "Try another",
+    "new_prompt": "New prompt"
+}
