@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prompt_result/app/routing/path_route.dart';
+import 'package:prompt_result/feature/app/routing/path_route.dart';
 
 class _ImageCacheManager extends NavigatorObserver {
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:prompt_result/app/routing/app_routing.dart';
+import 'package:prompt_result/feature/app/routing/app_routing.dart';
 import 'package:prompt_result/generated/l10n.dart';
 
 void main() async {
