@@ -12,7 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../../feature/image_generator/presentation/bloc/image_generator_bloc.dart'
+import '../../../feature/result/data/image_data.dart' as _i875;
+import '../../../feature/result/presentation/bloc/image_generator_bloc.dart'
     as _i109;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -22,6 +23,11 @@ _i174.GetIt $initGetIt(
   _i526.EnvironmentFilter? environmentFilter,
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
-  gh.lazySingleton<_i109.ImageGeneratorBloc>(() => _i109.ImageGeneratorBloc());
+  gh.lazySingleton<_i875.ImageData>(
+    () => _i875.ImageData(),
+  );
+  gh.lazySingleton<_i109.ImageGeneratorBloc>(
+    () => _i109.ImageGeneratorBloc(gh<_i875.ImageData>()),
+  );
   return getIt;
 }
