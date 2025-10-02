@@ -171,7 +171,7 @@ class ResultScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                 ),
-                child: Text(Locales.current.retry),
+                child: Text(Locales.current.try_another),
               ),
               SizedBox(height: 12),
               TextButton(

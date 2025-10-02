@@ -100,13 +100,3 @@ Widget _transitionsBuilder(
     child: ScaleTransition(scale: scaleAnimation, child: child),
   );
 }
-
-Page _customTransitionPage({required GoRouterState state, required Widget child}) {
-  return CustomTransitionPage(
-    key: state.pageKey,
-    child: child,
-    reverseTransitionDuration: const Duration(milliseconds: 1000),
-    transitionDuration: const Duration(milliseconds: 1000),
-    transitionsBuilder: _transitionsBuilder,
-  );
-}

@@ -16,7 +16,7 @@ class ImageGenerationFailure extends StatelessWidget {
         children: [
           Image.asset(AppImages.placeholder, width: 200),
           Text('${Locales.current.error} $error'),
-          ElevatedButton(onPressed: () => context.pop(), child: Text(Locales.current.retry)),
+          ElevatedButton(onPressed: () => context.pop(), child: Text(Locales.current.try_another)),
         ],
       ),
     );
