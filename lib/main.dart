@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:prompt_result/feature/app/bloc_providers.dart';
 import 'package:prompt_result/feature/app/routing/app_routing.dart';
 import 'package:prompt_result/generated/l10n.dart';
 
@@ -15,21 +16,29 @@ void main() async {
 
 // Функция для настройки зависимостей
 Future<void> configureDependencies() async {
-  final getIt = GetIt.instance;
-
-  // Регистрация сервисов
-  // getIt.registerSingleton<YourService>(YourService());
-
-  // Инициализация других необходимых сервисов
+  configureDependencies();
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  late GetIt locator;
+
+  @override
+  void initState() {
+    locator = GetIt.instance;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [],
+      providers: [...buildListProviders(locator: locator)],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: goRouter,
