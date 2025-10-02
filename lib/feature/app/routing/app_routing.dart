@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prompt_result/feature/app/routing/path_route.dart';
-import 'package:prompt_result/feature/image_generator/presentation/pages/image_generator_screen.dart';
-import 'package:prompt_result/feature/launcher/presentation/pages/launcher_screen.dart';
+import 'package:prompt_result/feature/result/presentation/pages/result_screen.dart';
+import 'package:prompt_result/feature/prompt/presentation/pages/prompt_screen.dart';
 
 class _ImageCacheManager extends NavigatorObserver {
   @override
@@ -46,27 +46,28 @@ BuildContext? get rootCurrentContext {
 final goRouter = GoRouter(
   observers: [_ImageCacheManager()],
   navigatorKey: rootNavigatorKey,
-  initialLocation: AppRoute.launchScreen,
+  initialLocation: AppRoute.promptScreen,
   routes: [
     GoRoute(
-      path: AppRoute.launchScreen,
-      name: AppRoute.launchScreen,
+      path: AppRoute.promptScreen,
+      name: AppRoute.promptScreen,
       pageBuilder: (context, state) {
+        final initialPrompt = state.extra as String?;
         return CustomTransitionPage(
           key: state.pageKey,
-          child: const LauncherScreen(),
+          child: PromptScreen(initialPrompt: initialPrompt),
           transitionsBuilder: _transitionsBuilder,
         );
       },
       routes: const [],
     ),
     GoRoute(
-      path: AppRoute.imageGenerator,
-      name: AppRoute.imageGenerator,
+      path: AppRoute.resultScreen,
+      name: AppRoute.resultScreen,
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-          child: const ImageGeneratorScreen(),
+          child: const ResultScreen(),
           transitionsBuilder: _transitionsBuilder,
         );
       },

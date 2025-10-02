@@ -1,8 +1,8 @@
 abstract class AppRoute {
-  ///OtherRoutes
-  static const launchScreen = '/launchScreen';
-  static const imageGenerator = '/imageGenerator';
+  // General Routes
+  static const promptScreen = '/promptScreen';
+  static const resultScreen = '/resultScreen';
 
-  // other
+  // Other
   static const pop = 'pop';
 }
