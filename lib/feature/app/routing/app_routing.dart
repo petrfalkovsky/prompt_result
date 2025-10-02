@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prompt_result/feature/app/routing/path_route.dart';
-import 'package:prompt_result/feature/launcher/presentation/launcher_screen.dart';
+import 'package:prompt_result/feature/image_generator/presentation/pages/image_generator_screen.dart';
+import 'package:prompt_result/feature/launcher/presentation/pages/launcher_screen.dart';
 
 class _ImageCacheManager extends NavigatorObserver {
   @override
@@ -54,6 +55,18 @@ final goRouter = GoRouter(
         return CustomTransitionPage(
           key: state.pageKey,
           child: const LauncherScreen(),
+          transitionsBuilder: _transitionsBuilder,
+        );
+      },
+      routes: const [],
+    ),
+    GoRoute(
+      path: AppRoute.imageGenerator,
+      name: AppRoute.imageGenerator,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const ImageGeneratorScreen(),
           transitionsBuilder: _transitionsBuilder,
         );
       },

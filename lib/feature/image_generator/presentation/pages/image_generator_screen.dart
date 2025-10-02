@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LauncherScreen extends StatelessWidget {
-  const LauncherScreen({super.key});
+class ImageGeneratorScreen extends StatelessWidget {
+  const ImageGeneratorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
