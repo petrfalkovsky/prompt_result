@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prompt_result/feature/app/routing/path_route.dart';
+import 'package:prompt_result/feature/launcher/presentation/launcher_screen.dart';
 
 class _ImageCacheManager extends NavigatorObserver {
   @override
@@ -44,20 +45,20 @@ BuildContext? get rootCurrentContext {
 final goRouter = GoRouter(
   observers: [_ImageCacheManager()],
   navigatorKey: rootNavigatorKey,
-  initialLocation: AppRoute.init,
+  initialLocation: AppRoute.launchScreen,
   routes: [
-    // GoRoute(
-    //   path: AppRoute.init,
-    //   name: AppRoute.init,
-    //   pageBuilder: (context, state) {
-    //     return CustomTransitionPage(
-    //       key: state.pageKey,
-    //       child: const LauncherScreen(),
-    //       transitionsBuilder: _transitionsBuilder,
-    //     );
-    //   },
-    //   routes: const [],
-    // ),
+    GoRoute(
+      path: AppRoute.launchScreen,
+      name: AppRoute.launchScreen,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const LauncherScreen(),
+          transitionsBuilder: _transitionsBuilder,
+        );
+      },
+      routes: const [],
+    ),
   ],
   errorBuilder: ((context, state) => Container()),
 );

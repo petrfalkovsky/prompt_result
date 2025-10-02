@@ -1,7 +1,7 @@
 abstract class AppRoute {
   ///OtherRoutes
-  static const init = '/init';
-  static const home = '/home';
+  static const launchScreen = '/launchScreen';
+  static const imageGenerator = '/imageGenerator';
 
   // other
   static const pop = 'pop';
